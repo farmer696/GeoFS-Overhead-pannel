@@ -96,7 +96,8 @@
   "Embraer E190": "#1f1f1f",
   "Bombardier CRJ-200": "#1f1f1f",
   "MD-11": "#343A40",
-  "L1011TriStar": "#303438"
+  "L1011TriStar": "#303438",
+  "ATR-42": "#1f4b2f"
 };
 
 
@@ -214,6 +215,7 @@ const categories = {
 
   "Turboprops": [
     "ATR-72",
+    "ATR-42",
     "Dash-8 Q400"
   ]
 };
@@ -642,6 +644,7 @@ function loadOverhead() {
   if (currentAircraft === "Bombardier CRJ-200") return loadCRJ200();
   if (currentAircraft === "MD-11") return loadMD11();
   if (currentAircraft === "L-1011 TriStar") return loadL1011TriStar();
+  if (currentAircraft === "ATR-42") return loadATR42();
 }
 
 
@@ -2132,6 +2135,55 @@ function loadATR72() {
   createRegionalToggle(secLights, "LANDING", (s) => {
     showPopup("LANDING " + (s ? "ON" : "OFF"), "regional");
   });
+}
+// ============================================================
+//  ATR-42 overhead
+// ============================================================
+    function loadATR42() {
+
+  // ELECTRICAL
+  const secElec = createSection("ELECTRICAL");
+  createRocker(secElec, "BATTERY", s=>showPopup("BATTERY "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secElec, "GEN 1", s=>showPopup("GEN 1 "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secElec, "GEN 2", s=>showPopup("GEN 2 "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secElec, "EXT PWR", s=>showPopup("EXT PWR "+(s?"ON":"OFF"),"atr42"));
+
+  // FUEL (ATR‑42 has fewer pumps than ATR‑72)
+  const secFuel = createSection("FUEL");
+  createRocker(secFuel, "L FUEL PUMP", s=>showPopup("L FUEL PUMP "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secFuel, "R FUEL PUMP", s=>showPopup("R FUEL PUMP "+(s?"ON":"OFF"),"atr42"));
+  createBoeingPush(secFuel, "X-FEED", s=>showPopup("CROSSFEED "+(s?"OPEN":"CLOSED"),"atr42"));
+
+  // HYDRAULICS
+  const secHyd = createSection("HYDRAULICS");
+  createRocker(secHyd, "HYD PUMP 1", s=>showPopup("HYD PUMP 1 "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secHyd, "HYD PUMP 2", s=>showPopup("HYD PUMP 2 "+(s?"ON":"OFF"),"atr42"));
+
+  // BLEED / AIR
+  const secBleed = createSection("BLEED / AIR");
+  createRocker(secBleed, "ENG 1 BLEED", s=>showPopup("ENG 1 BLEED "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secBleed, "ENG 2 BLEED", s=>showPopup("ENG 2 BLEED "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secBleed, "PACK 1", s=>showPopup("PACK 1 "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secBleed, "PACK 2", s=>showPopup("PACK 2 "+(s?"ON":"OFF"),"atr42"));
+
+  // ANTI-ICE
+  const secIce = createSection("ANTI-ICE");
+  createRocker(secIce, "ENG 1 ANTI-ICE", s=>showPopup("ENG 1 ANTI-ICE "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secIce, "ENG 2 ANTI-ICE", s=>showPopup("ENG 2 ANTI-ICE "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secIce, "WING ANTI-ICE", s=>showPopup("WING ANTI-ICE "+(s?"ON":"OFF"),"atr42"));
+
+  // LIGHTS
+  const secLights = createSection("LIGHTS");
+  createRocker(secLights, "BEACON", s=>showPopup("BEACON "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secLights, "STROBE", s=>showPopup("STROBE "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"atr42"));
+  createRocker(secLights, "TAXI", s=>showPopup("TAXI "+(s?"ON":"OFF"),"atr42"));
+
+  // ENGINE START
+  const secEng = createSection("ENGINE START");
+  createRotary(secEng, "ENG 1", ["OFF","START"], idx=>{ if(idx===1) startEngine(1); });
+  createRotary(secEng, "ENG 2", ["OFF","START"], idx=>{ if(idx===1) startEngine(2); });
 }
 
 // ============================================================
