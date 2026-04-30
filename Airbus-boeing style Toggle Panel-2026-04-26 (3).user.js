@@ -75,14 +75,14 @@
 
 
 
-  let currentAircraft = "Boeing 737 MAX";
+  let currentAircraft = "Boeing 777";
 
   const themes = {
   "Airbus A320": "#003366",
   "Airbus A330": "#003366",
   "Airbus A340": "#003366",
   "Airbus A350": "#003366",
-  "Boeing 737 MAX": "#2b2b2b",
+  "Boeing 737": "#2b2b2b",
   "Boeing 747": "#2b2b2b",
   "Boeing 757": "#2b2b2b",
   "Boeing 767": "#2b2b2b",
@@ -190,7 +190,7 @@ const categories = {
   ],
 
   "Boeing": [
-    "Boeing 737 MAX",
+    "Boeing 737",
     "Boeing 747",
     "Boeing 757",
     "Boeing 767",
@@ -624,7 +624,7 @@ function loadOverhead() {
     currentAircraft + " OVERHEAD";
 
   if (currentAircraft === "Airbus A320") return loadA320();
-  if (currentAircraft === "Boeing 737 MAX") return load737MAX();
+  if (currentAircraft === "Boeing 737") return load737();
   if (currentAircraft === "Airbus A330") return loadA330();
   if (currentAircraft === "Airbus A340") return loadA340();
   if (currentAircraft === "Airbus A350") return loadA350();
@@ -871,9 +871,9 @@ function loadMD11() {
   }
 
   // ============================================================
-  //  BOEING 737 MAX OVERHEAD
+  //  BOEING 737 OVERHEAD
   // ============================================================
-  function load737MAX() {
+  function load737() {
     // ELECTRICAL
     const secElec = createSection("ELECTRICAL");
 
