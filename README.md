@@ -23,6 +23,7 @@ The UI is modular, draggable, and designed for realism while still being easy to
 - Expandable design for future aircraft
   
 **How to install**
+
 Install Tampermonkey in your browser
 
 Click “Create a new script”
