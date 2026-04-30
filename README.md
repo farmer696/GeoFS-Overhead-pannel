@@ -5,7 +5,7 @@ This addon adds fully interactive, realistic overhead panels to GeoFS for a grow
 The UI is modular, draggable, and designed for realism while still being easy to use in a browser. Each aircraft loads its own unique overhead with accurate colors, labels, and system grouping
 **Aircraft**
 - Airbus A220 / A320 / A330 / A340 / A350 / A380  
-- Boeing 737 / 737 NG / 747 / 757 / 767 / 777 / 787  
+- Boeing 737 / 747 / 757 / 767 / 777 / 787  
 - MD‑11  
 - L‑1011 TriStar  
 - CRJ‑200 / CRJ‑700  
