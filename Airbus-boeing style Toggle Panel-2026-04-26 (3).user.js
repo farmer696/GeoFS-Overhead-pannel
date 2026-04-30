@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Airbus/boeing style Toggle Panel
 // @namespace    http://tampermonkey.net/
-// @version      0.9
+// @version      1.1
 // @description  GeoFS Overhead Panel Addon adds realistic, interactive overheads for multiple aircraft, including Airbus, Boeing, MD‑11, and the L‑1011 TriStar. Features authentic switch types, system groups, pop‑ups, and aircraft‑specific layouts for a more immersive cockpit experience.
 // @author       Twinkie Aviation/Copilot
 // @match        https://www.geo-fs.com/geofs.php?v=3.9
@@ -1625,6 +1625,25 @@ function loadMD11() {
       showPopup("CROSSFEED " + (s ? "OPEN" : "CLOSED"), "boeing");
     });
 
+    // APU
+    const secAPU = createSection("APU");
+
+    createBoeingPush(secAPU, "APU SWITCH", (s) => {
+      showPopup("APU SWITCH " + (s ? "ON" : "OFF"), "boeing");
+    });
+
+    createBoeingPush(secAPU, "APU START", (s) => {
+      if (s) {
+        showPopup("APU STARTING…", "boeing");
+        setTimeout(() => {
+          showPopup("APU → RUNNING", "boeing");
+          playChime();
+        }, 2000);
+      } else {
+        showPopup("APU → SHUTDOWN", "boeing");
+      }
+    });
+
     // AIR SYSTEMS
     const secAir = createSection("AIR SYSTEMS");
 
@@ -1690,6 +1709,25 @@ function loadMD11() {
 
     createBoeingPush(secElec, "APU GEN", (s) => {
       showPopup("APU GEN " + (s ? "ON" : "OFF"), "boeing");
+    });
+
+      // APU
+    const secAPU = createSection("APU");
+
+    createBoeingPush(secAPU, "APU SWITCH", (s) => {
+      showPopup("APU SWITCH " + (s ? "ON" : "OFF"), "boeing");
+    });
+
+    createBoeingPush(secAPU, "APU START", (s) => {
+      if (s) {
+        showPopup("APU STARTING…", "boeing");
+        setTimeout(() => {
+          showPopup("APU → RUNNING", "boeing");
+          playChime();
+        }, 2000);
+      } else {
+        showPopup("APU → SHUTDOWN", "boeing");
+      }
     });
 
     // FUEL
@@ -1949,6 +1987,25 @@ function loadMD11() {
   createRocker(secHyd, "SYS B PUMP", s=>showPopup("HYD B "+(s?"ON":"OFF"),"boeing"));
   createRocker(secHyd, "SYS C PUMP", s=>showPopup("HYD C "+(s?"ON":"OFF"),"boeing"));
 
+  // APU
+    const secAPU = createSection("APU");
+
+    createBoeingPush(secAPU, "APU SWITCH", (s) => {
+      showPopup("APU SWITCH " + (s ? "ON" : "OFF"), "boeing");
+    });
+
+    createBoeingPush(secAPU, "APU START", (s) => {
+      if (s) {
+        showPopup("APU STARTING…", "boeing");
+        setTimeout(() => {
+          showPopup("APU → RUNNING", "boeing");
+          playChime();
+        }, 2000);
+      } else {
+        showPopup("APU → SHUTDOWN", "boeing");
+      }
+    });
+
   // BLEED / PACKS
   const secBleed = createSection("BLEED / PACKS");
   createRocker(secBleed, "PACK L", s=>showPopup("PACK L "+(s?"ON":"OFF"),"boeing"));
@@ -2004,6 +2061,25 @@ function load757() {
   createRocker(secHyd, "SYS A PUMP", s=>showPopup("HYD A "+(s?"ON":"OFF"),"boeing"));
   createRocker(secHyd, "SYS B PUMP", s=>showPopup("HYD B "+(s?"ON":"OFF"),"boeing"));
 
+    // APU
+    const secAPU = createSection("APU");
+
+    createBoeingPush(secAPU, "APU SWITCH", (s) => {
+      showPopup("APU SWITCH " + (s ? "ON" : "OFF"), "boeing");
+    });
+
+    createBoeingPush(secAPU, "APU START", (s) => {
+      if (s) {
+        showPopup("APU STARTING…", "boeing");
+        setTimeout(() => {
+          showPopup("APU → RUNNING", "boeing");
+          playChime();
+        }, 2000);
+      } else {
+        showPopup("APU → SHUTDOWN", "boeing");
+      }
+    });
+
   // BLEED / PACKS
   const secBleed = createSection("BLEED / PACKS");
   createRocker(secBleed, "PACK L", s=>showPopup("PACK L "+(s?"ON":"OFF"),"boeing"));
@@ -2054,6 +2130,25 @@ function load757() {
   const secHyd = createSection("HYDRAULICS");
   createRocker(secHyd, "SYS L PUMP", s=>showPopup("HYD L "+(s?"ON":"OFF"),"boeing"));
   createRocker(secHyd, "SYS R PUMP", s=>showPopup("HYD R "+(s?"ON":"OFF"),"boeing"));
+
+      // APU
+    const secAPU = createSection("APU");
+
+    createBoeingPush(secAPU, "APU SWITCH", (s) => {
+      showPopup("APU SWITCH " + (s ? "ON" : "OFF"), "boeing");
+    });
+
+    createBoeingPush(secAPU, "APU START", (s) => {
+      if (s) {
+        showPopup("APU STARTING…", "boeing");
+        setTimeout(() => {
+          showPopup("APU → RUNNING", "boeing");
+          playChime();
+        }, 2000);
+      } else {
+        showPopup("APU → SHUTDOWN", "boeing");
+      }
+    });
 
   // BLEED / PACKS
   const secBleed = createSection("BLEED / PACKS");
