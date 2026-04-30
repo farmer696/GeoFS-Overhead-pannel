@@ -88,7 +88,7 @@
   "Boeing 767": "#2b2b2b",
   "Boeing 777": "#2b2b2b",
   "Boeing 787": "#2b2b2b",
-  "De Havilland Q400": "#1f4b2f",
+  "Dash-8 Q400": "#1f4b2f",
   "Bombardier CRJ-700": "#1f1f1f",
   "ATR-72": "#1f4b2f",
   "Airbus A380": "#003366",
@@ -633,7 +633,7 @@ function loadOverhead() {
   if (currentAircraft === "Boeing 767") return load767();
   if (currentAircraft === "Boeing 777") return load777();
   if (currentAircraft === "Boeing 787") return load787();
-  if (currentAircraft === "De Havilland Q400") return loadQ400();
+  if (currentAircraft === "Dash-8 Q400") return loadQ400();
   if (currentAircraft === "Bombardier CRJ-700") return loadCRJ700();
   if (currentAircraft === "ATR-72") return loadATR72();
   if (currentAircraft === "Airbus A380") return loadA380();
