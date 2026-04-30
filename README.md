@@ -10,7 +10,7 @@ The UI is modular, draggable, and designed for realism while still being easy to
 - L‑1011 TriStar  
 - CRJ‑200 / CRJ‑700  
 - Embraer E190  
-- ATR‑72  
+- ATR‑72 / ATR-42
 - Dash‑8 Q400  
 
 ### **Features**
@@ -20,7 +20,17 @@ The UI is modular, draggable, and designed for realism while still being easy to
 - Pop‑up feedback for every switch  
 - Draggable, collapsible overhead panel  
 - Accurate 3‑engine support for MD‑11 and L‑1011  
-- Expandable design for future aircraft  
+- Expandable design for future aircraft
+  
+**How to install**
+Install Tampermonkey in your browser
 
-### **Why this addon is unique**
-Unlike simple light toggles, this addon recreates the *actual overhead logic* of each aircraft family. Airbus uses pushbuttons, Boeing uses rockers, the MD‑11 has triple‑redundant systems, and the L‑1011 has its iconic Lockheed layout. Everything is built to feel like a real cockpit.
+Click “Create a new script”
+
+Paste the addon code and Save
+
+Open GeoFS and select an aircraft
+
+Click the overhead button—panel appears 
+
+GeoFS Overhead Panel Addon adds realistic, interactive overheads for many aircraft, including Airbus, Boeing, MD‑11, and the L‑1011 TriStar. It simulates switches, system groups, and layouts and it does not change or control the actual aircraft in‑game.
