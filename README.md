@@ -14,9 +14,9 @@ The UI is modular, draggable, and designed for realism while still being easy to
 - Dash‑8 Q400  
 
 ### **Features**
-- Realistic pushbuttons, rocker switches, and rotary engine start knobs  
+- Realistic pushbuttons, rocker switches 
 - Authentic Airbus, Boeing, McDonnell Douglas, and Lockheed color themes  
-- System groups: Electrical, Fuel, Hydraulics, Bleed Air, Packs, Anti‑Ice, Lights, Engine Start  
+- System groups: Electrical, Fuel, Hydraulics, Bleed Air, Packs, Anti‑Ice, Lights
 - Pop‑up feedback for every switch  
 - Draggable, collapsible overhead panel  
 - Accurate 3‑engine support for MD‑11 and L‑1011  
