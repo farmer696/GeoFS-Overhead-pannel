@@ -101,6 +101,7 @@
   "Bombardier CRJ-200": "#1f1f1f",
   "MD-11": "#343A40",
   "DC-3": "#343A40",
+  "Saab 340": "#1f1f1f",
   "L1011TriStar": "#303438",
   "ATR-42": "#1f4b2f"
 };
@@ -211,7 +212,7 @@ const categories = {
 
   "McDonnell Douglas": [
     "MD-11",
-    "DC-3"
+    "DC-3",
   ],
 
   "Embraer": [
@@ -220,20 +221,22 @@ const categories = {
     "Embraer E195-E2",
     "Embraer E190"
   ],
-"Regional Jets": [
-    "CRJ-200",
-    "CRJ-700",
-  ],
-
-"BAC": [
-    "Concorde"
-  ],
 
   "Turboprops": [
     "ATR-72",
     "ATR-42",
-    "Dash-8 Q400"
-  ]
+    "Dash-8 Q400",
+    "Saab 340"
+  ],
+
+"Other": [
+    "Concorde",
+    "CRJ-200",
+    "CRJ-700",
+    "L-1011 TriStar"
+  ],
+
+
 };
 
 
@@ -727,6 +730,7 @@ function loadOverhead() {
   if (currentAircraft === "Embraer ERJ170") return loadERJ170();
   if (currentAircraft === "DC-3") return loadDC3();
   if (currentAircraft === "Concorde") return loadConcorde();
+  if (currentAircraft === "Saab 340") return loadSaab340();
 }
 
 
@@ -3136,6 +3140,57 @@ function loadConcorde() {
   createRocker(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"concorde"));
   createRocker(secLights, "TAXI", s=>showPopup("TAXI "+(s?"ON":"OFF"),"concorde"));
 
+}
+//========
+// Sabb 340
+//========
+function loadSaab340() {
+
+  // ELECTRICAL
+  const secElec = createSection("ELECTRICAL");
+  createRocker(secElec, "BATTERY", s=>showPopup("BATTERY "+(s?"ON":"OFF"),"saab"));
+  createRocker(secElec, "GEN 1", s=>showPopup("GEN 1 "+(s?"ON":"OFF"),"saab"));
+  createRocker(secElec, "GEN 2", s=>showPopup("GEN 2 "+(s?"ON":"OFF"),"saab"));
+  createRocker(secElec, "EXT PWR", s=>showPopup("EXTERNAL POWER "+(s?"ON":"OFF"),"saab"));
+
+  // FUEL
+  const secFuel = createSection("FUEL");
+  createRocker(secFuel, "L PUMP", s=>showPopup("L FUEL PUMP "+(s?"ON":"OFF"),"saab"));
+  createRocker(secFuel, "R PUMP", s=>showPopup("R FUEL PUMP "+(s?"ON":"OFF"),"saab"));
+  createBoeingPush(secFuel, "CROSSFEED", s=>showPopup("CROSSFEED "+(s?"OPEN":"CLOSED"),"saab"));
+
+  // ENGINE / PROP
+  const secEng = createSection("ENGINE / PROP");
+  createRocker(secEng, "AUTO IGNITION", s=>showPopup("AUTO IGNITION "+(s?"ON":"OFF"),"saab"));
+  createRocker(secEng, "L CONDITION", s=>showPopup("L CONDITION "+(s?"RUN":"FUEL OFF"),"saab"));
+  createRocker(secEng, "R CONDITION", s=>showPopup("R CONDITION "+(s?"RUN":"FUEL OFF"),"saab"));
+  createRocker(secEng, "PROP SYNC", s=>showPopup("PROP SYNC "+(s?"ON":"OFF"),"saab"));
+
+  // BLEED / AIR
+  const secBleed = createSection("BLEED / AIR");
+  createRocker(secBleed, "L BLEED", s=>showPopup("L BLEED "+(s?"ON":"OFF"),"saab"));
+  createRocker(secBleed, "R BLEED", s=>showPopup("R BLEED "+(s?"ON":"OFF"),"saab"));
+  createRocker(secBleed, "PACK", s=>showPopup("PACK "+(s?"ON":"OFF"),"saab"));
+
+  // DE-ICE
+  const secIce = createSection("DE-ICE");
+  createRocker(secIce, "PROP DE-ICE", s=>showPopup("PROP DE-ICE "+(s?"ON":"OFF"),"saab"));
+  createRocker(secIce, "WING BOOTS", s=>showPopup("WING BOOTS "+(s?"ON":"OFF"),"saab"));
+  createRocker(secIce, "ENG ANTI-ICE", s=>showPopup("ENGINE ANTI-ICE "+(s?"ON":"OFF"),"saab"));
+  createRocker(secIce, "PITOT HEAT", s=>showPopup("PITOT HEAT "+(s?"ON":"OFF"),"saab"));
+
+  // PRESSURIZATION
+  const secPress = createSection("PRESSURIZATION");
+  createRocker(secPress, "AUTO PRESS", s=>showPopup("PRESSURIZATION "+(s?"AUTO":"MANUAL"),"saab"));
+  createRocker(secPress, "DUMP", s=>showPopup("CABIN DUMP "+(s?"ACTIVE":"OFF"),"saab"));
+
+  // LIGHTS
+  const secLights = createSection("LIGHTS");
+  createRocker(secLights, "BEACON", s=>showPopup("BEACON "+(s?"ON":"OFF"),"saab"));
+  createRocker(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"saab"));
+  createRocker(secLights, "STROBE", s=>showPopup("STROBE "+(s?"ON":"OFF"),"saab"));
+  createRocker(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"saab"));
+  createRocker(secLights, "TAXI", s=>showPopup("TAXI "+(s?"ON":"OFF"),"saab"));
 }
 
   // ============================================================
