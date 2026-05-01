@@ -1172,109 +1172,128 @@ function loadMD11() {
   // ============================================================
   //  AIRBUS A340 OVERHEAD (4 engines)
   // ============================================================
-  function loadA340() {
-    // LIGHTS
-    const secLights = createSection("EXT LT (LIGHTS)");
 
-    createRocker(secLights, "STROBE", (s) => {
-      showPopup("STROBE " + (s ? "ON" : "OFF"), "airbus");
-    });
 
-    createRocker(secLights, "BEACON", (s) => {
-      showPopup("BEACON " + (s ? "ON" : "OFF"), "airbus");
-    });
+function loadA340() {
+  // ============================
+  // LIGHTS
+  // ============================
+  const secLights = createSection("EXT LT (LIGHTS)");
 
-    createRocker(secLights, "NAV & LOGO", (s) => {
-      showPopup("NAV & LOGO " + (s ? "ON" : "OFF"), "airbus");
-    });
+  createRocker(secLights, "STROBE", s => {
+    showPopup("STROBE " + (s ? "ON" : "OFF"), "airbus");
+  });
 
-    createRocker(secLights, "LAND", (s) => {
-      showPopup("LAND " + (s ? "ON" : "OFF"), "airbus");
-    });
+  createRocker(secLights, "BEACON", s => {
+    showPopup("BEACON " + (s ? "ON" : "OFF"), "airbus");
+  });
 
-    // FUEL (4 engines)
-    const secFuel = createSection("FUEL");
+  createRocker(secLights, "NAV & LOGO", s => {
+    showPopup("NAV & LOGO " + (s ? "ON" : "OFF"), "airbus");
+  });
 
-    createAirbusPush(secFuel, "ENG 1 PUMP", (s) => {
-      showPopup("ENG 1 PUMP " + (s ? "ON" : "OFF"), "airbus");
-    });
+  createRocker(secLights, "LAND", s => {
+    showPopup("LAND " + (s ? "ON" : "OFF"), "airbus");
+  });
 
-    createAirbusPush(secFuel, "ENG 2 PUMP", (s) => {
-      showPopup("ENG 2 PUMP " + (s ? "ON" : "OFF"), "airbus");
-    });
 
-    createAirbusPush(secFuel, "ENG 3 PUMP", (s) => {
-      showPopup("ENG 3 PUMP " + (s ? "ON" : "OFF"), "airbus");
-    });
+  // ============================
+  // FUEL (4 engines)
+  // ============================
+  const secFuel = createSection("FUEL");
 
-    createAirbusPush(secFuel, "ENG 4 PUMP", (s) => {
-      showPopup("ENG 4 PUMP " + (s ? "ON" : "OFF"), "airbus");
-    });
+  createAirbusPush(secFuel, "ENG 1 PUMP", s => {
+    showPopup("ENG 1 PUMP " + (s ? "ON" : "OFF"), "airbus");
+  });
 
-    createAirbusPush(secFuel, "X-FEED", (s) => {
-      showPopup("CROSSFEED " + (s ? "OPEN" : "CLOSED"), "airbus");
-    });
+  createAirbusPush(secFuel, "ENG 2 PUMP", s => {
+    showPopup("ENG 2 PUMP " + (s ? "ON" : "OFF"), "airbus");
+  });
 
-    // BLEED
-    const secBleed = createSection("BLEED / PACKS");
+  createAirbusPush(secFuel, "ENG 3 PUMP", s => {
+    showPopup("ENG 3 PUMP " + (s ? "ON" : "OFF"), "airbus");
+  });
 
-    createAirbusPush(secBleed, "PACK 1", (s) => {
-      showPopup("PACK 1 " + (s ? "ON" : "OFF"), "airbus");
-    });
+  createAirbusPush(secFuel, "ENG 4 PUMP", s => {
+    showPopup("ENG 4 PUMP " + (s ? "ON" : "OFF"), "airbus");
+  });
 
-    createAirbusPush(secBleed, "PACK 2", (s) => {
-      showPopup("PACK 2 " + (s ? "ON" : "OFF"), "airbus");
-    });
+  createAirbusPush(secFuel, "X-FEED", s => {
+    showPopup("CROSSFEED " + (s ? "OPEN" : "CLOSED"), "airbus");
+  });
 
-    createAirbusPush(secBleed, "PACK 3", (s) => {
-      showPopup("PACK 3 " + (s ? "ON" : "OFF"), "airbus");
-    });
 
-    createAirbusPush(secBleed, "PACK 4", (s) => {
-      showPopup("PACK 4 " + (s ? "ON" : "OFF"), "airbus");
-    });
-// APU
-    const secAPU = createSection("APU");
+  // ============================
+  // BLEED / PACKS
+  // ============================
+  const secBleed = createSection("BLEED / PACKS");
 
-    createAirbusPush(secAPU, "APU MASTER", (s) => {
-      showPopup("APU MASTER " + (s ? "ON" : "OFF"), "airbus");
-    });
+  createAirbusPush(secBleed, "PACK 1", s => {
+    showPopup("PACK 1 " + (s ? "ON" : "OFF"), "airbus");
+  });
 
-    createAirbusPush(secAPU, "APU START", (s) => {
-      if (s) {
-        showPopup("APU STARTING…", "airbus");
-        setTimeout(() => {
-          showPopup("APU → RUNNING", "airbus");
-          playChime();
-        }, 2000);
-      } else {
-        showPopup("APU → SHUTDOWN", "airbus");
-      }
-    });
+  createAirbusPush(secBleed, "PACK 2", s => {
+    showPopup("PACK 2 " + (s ? "ON" : "OFF"), "airbus");
+  });
 
-    // ANTI-ICE
-    const secAnti = createSection("ANTI-ICE");
+  createAirbusPush(secBleed, "PACK 3", s => {
+    showPopup("PACK 3 " + (s ? "ON" : "OFF"), "airbus");
+  });
 
-    createAirbusPush(secAnti, "ENG 1 ANTI-ICE", (s) => {
-      showPopup("ENG 1 ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
-    });
+  createAirbusPush(secBleed, "PACK 4", s => {
+    showPopup("PACK 4 " + (s ? "ON" : "OFF"), "airbus");
+  });
 
-    createAirbusPush(secAnti, "ENG 2 ANTI-ICE", (s) => {
-      showPopup("ENG 2 ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
-    });
 
-    createAirbusPush(secAnti, "ENG 3 ANTI-ICE", (s) => {
-      showPopup("ENG 3 ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
-    });
 
-    createAirbusPush(secAnti, "ENG 4 ANTI-ICE", (s) => {
-      showPopup("ENG 4 ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
-    });
+  // ============================
+  // ANTI-ICE
+  // ============================
+  const secAnti = createSection("ANTI-ICE");
 
-    createAirbusPush(secAnti, "WING ANTI-ICE", (s) => {
-      showPopup("WING ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
-    });
-  }
+  createAirbusPush(secAnti, "ENG 1 ANTI-ICE", s => {
+    showPopup("ENG 1 ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
+  });
+
+  createAirbusPush(secAnti, "ENG 2 ANTI-ICE", s => {
+    showPopup("ENG 2 ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
+  });
+
+  createAirbusPush(secAnti, "ENG 3 ANTI-ICE", s => {
+    showPopup("ENG 3 ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
+  });
+
+  createAirbusPush(secAnti, "ENG 4 ANTI-ICE", s => {
+    showPopup("ENG 4 ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
+  });
+
+  createAirbusPush(secAnti, "WING ANTI-ICE", s => {
+    showPopup("WING ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
+  });
+
+
+  // ============================
+  // APU
+  // ============================
+  const secAPU = createSection("APU");
+
+  createAirbusPush(secAPU, "APU MASTER", s => {
+    showPopup("APU MASTER " + (s ? "ON" : "OFF"), "airbus");
+  });
+
+  createAirbusPush(secAPU, "APU START", s => {
+    if (s) {
+      showPopup("APU STARTING…", "airbus");
+      setTimeout(() => {
+        showPopup("APU → RUNNING", "airbus");
+        playChime();
+      }, 2000);
+    } else {
+      showPopup("APU → SHUTDOWN", "airbus");
+    }
+  });
+
+}
 
   // ============================================================
   //  AIRBUS A350 OVERHEAD (modern Airbus)
@@ -1510,6 +1529,25 @@ function loadMD11() {
 
     createAirbusPush(secFuel, "X-FEED", (s) => {
       showPopup("CROSSFEED " + (s ? "OPEN" : "CLOSED"), "airbus");
+    });
+
+      // APU
+    const secAPU = createSection("APU");
+
+    createAirbusPush(secAPU, "APU MASTER", (s) => {
+      showPopup("APU MASTER " + (s ? "ON" : "OFF"), "airbus");
+    });
+
+    createAirbusPush(secAPU, "APU START", (s) => {
+      if (s) {
+        showPopup("APU STARTING…", "airbus");
+        setTimeout(() => {
+          showPopup("APU → RUNNING", "airbus");
+          playChime();
+        }, 2000);
+      } else {
+        showPopup("APU → SHUTDOWN", "airbus");
+      }
     });
 
     // BLEED
