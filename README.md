@@ -13,6 +13,9 @@ The UI is modular, draggable, and designed for realism while still being easy to
 - ATR‑72 / ATR-42
 - Dash‑8 Q400  
 
+
+**ONLy WORKS WITH V3.9** V4 coming soon
+
 ### **Features**
 - Realistic pushbuttons, rocker switches 
 - Authentic Airbus, Boeing, McDonnell Douglas, and Lockheed color themes  
