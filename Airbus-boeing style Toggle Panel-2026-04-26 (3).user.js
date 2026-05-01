@@ -550,7 +550,6 @@ function createTempModeKnob(section, label, callback) {
   knob.style.cursor = "pointer";
   knob.style.transition = "transform 0.2s ease";
 
-  // pointer
   const pointer = document.createElement("div");
   pointer.style.width = "6px";
   pointer.style.height = "14px";
@@ -563,7 +562,7 @@ function createTempModeKnob(section, label, callback) {
 
   knob.appendChild(pointer);
 
-  // 3 positions: 0° = COLD, 90° = WARM, 180° = HOT
+  // Your custom angles
   const modes = ["COLD", "WARM", "HOT"];
   const angles = [300, 0, 60];
   let index = 0;
@@ -586,6 +585,7 @@ function createTempModeKnob(section, label, callback) {
   row.appendChild(knob);
   section.appendChild(row);
 }
+
 
   // ------------------------------
   // Guarded Switch (Boeing)
@@ -799,6 +799,12 @@ function loadMD11() {
   createRocker(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"md11"));
   createRocker(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"md11"));
   createRocker(secLights, "TAXI", s=>showPopup("TAXI "+(s?"ON":"OFF"),"md11"));
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
 }
 
 // ============================================================
@@ -866,6 +872,11 @@ function loadMD11() {
         showPopup("APU → SHUTDOWN", "airbus");
       }
     });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
 
 }
 
@@ -991,6 +1002,12 @@ function loadMD11() {
     createAirbusPush(secAnti, "PROBE/WINDOW HEAT", (s) => {
       showPopup("PROBE/WINDOW HEAT " + (s ? "ON" : "AUTO"), "airbus");
     });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
   }
 
   // ============================================================
@@ -1139,6 +1156,12 @@ function loadMD11() {
       try { geofs.aircraft.instance.lights.taxi = s; } catch {}
       showPopup("TAXI " + (s ? "ON" : "OFF"), "boeing");
     });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
   }
   // ============================================================
   //  AIRBUS A330 OVERHEAD
@@ -1249,6 +1272,12 @@ function loadMD11() {
     createAirbusPush(secAnti, "WING ANTI-ICE", (s) => {
       showPopup("WING ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
     });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
   }
 
   // ============================================================
@@ -1455,6 +1484,12 @@ function loadA340() {
     createAirbusPush(secAnti, "WING ANTI-ICE", (s) => {
       showPopup("WING ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
     });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
   }
   // ============================================================
   //  AIRBUS A330 OVERHEAD
@@ -1565,6 +1600,12 @@ function loadA340() {
     createAirbusPush(secAnti, "WING ANTI-ICE", (s) => {
       showPopup("WING ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
     });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
   }
 
   // ============================================================
@@ -1673,6 +1714,12 @@ function loadA340() {
     createAirbusPush(secAnti, "WING ANTI-ICE", (s) => {
       showPopup("WING ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
     });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
   }
 
   // ============================================================
@@ -1753,6 +1800,12 @@ function loadA340() {
     createAirbusPush(secAnti, "WING ANTI-ICE", (s) => {
       showPopup("WING ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
     });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
   }
   // ============================================================
   //  BOEING 777 OVERHEAD (modern Boeing widebody)
@@ -1871,6 +1924,7 @@ createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
     createRocker(secLights, "LANDING", (s) => {
       showPopup("LANDING " + (s ? "ON" : "OFF"), "boeing");
     });
+
   }
 
   // ============================================================
@@ -1982,6 +2036,12 @@ createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
     createRocker(secLights, "LANDING", (s) => {
       showPopup("LANDING " + (s ? "ON" : "OFF"), "boeing");
     });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
   }
   // ============================================================
   //  DE HAVILLAND Q400 OVERHEAD (turboprop)
@@ -2061,6 +2121,12 @@ createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
     createRegionalToggle(secLights, "LANDING", (s) => {
       showPopup("LANDING " + (s ? "ON" : "OFF"), "regional");
     });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
   }
 
   // ============================================================
@@ -2141,6 +2207,12 @@ createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
     createRegionalToggle(secLights, "LANDING", (s) => {
       showPopup("LANDING " + (s ? "ON" : "OFF"), "regional");
     });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
   }
 
 // ============================================================
@@ -2217,6 +2289,11 @@ createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
   createRocker(secLights, "WING", s=>showPopup("WING LIGHT "+(s?"ON":"OFF"),"boeing"));
   createRocker(secLights, "RTO L", s=>showPopup("RUNWAY TURNOFF L "+(s?"ON":"OFF"),"boeing"));
   createRocker(secLights, "RTO R", s=>showPopup("RUNWAY TURNOFF R "+(s?"ON":"OFF"),"boeing"));
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
 
 
 }
@@ -2284,6 +2361,11 @@ function load757() {
   createRocker(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"boeing"));
   createRocker(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"boeing"));
   createRocker(secLights, "TAXI", s=>showPopup("TAXI "+(s?"ON":"OFF"),"boeing"));
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
 
 
 }
@@ -2354,6 +2436,12 @@ function load757() {
   createRocker(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"boeing"));
   createRocker(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"boeing"));
   createRocker(secLights, "TAXI", s=>showPopup("TAXI "+(s?"ON":"OFF"),"boeing"));
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
 }
 
 // ============================================================
@@ -2414,6 +2502,12 @@ function loadATR72() {
   createRegionalToggle(secLights, "LANDING", (s) => {
     showPopup("LANDING " + (s ? "ON" : "OFF"), "regional");
   });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
 }
 // ============================================================
 //  ATR-42 overhead
@@ -2458,11 +2552,12 @@ function loadATR72() {
   createRocker(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"atr42"));
   createRocker(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"atr42"));
   createRocker(secLights, "TAXI", s=>showPopup("TAXI "+(s?"ON":"OFF"),"atr42"));
+const secCabin = createSection("CABIN TEMP");
 
-  // ENGINE START
-  const secEng = createSection("ENGINE START");
-  createRotary(secEng, "ENG 1", ["OFF","START"], idx=>{ if(idx===1) startEngine(1); });
-  createRotary(secEng, "ENG 2", ["OFF","START"], idx=>{ if(idx===1) startEngine(2); });
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
 }
 
 // ============================================================
@@ -2546,6 +2641,12 @@ function loadA380() {
   createAirbusPush(secAnti, "WING ANTI-ICE", (s) => {
     showPopup("WING ANTI-ICE " + (s ? "ON" : "OFF"), "airbus");
   });
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
 }
 /* ============================================================
       PART 9 — A220, E190, CRJ‑200
@@ -2611,6 +2712,12 @@ function loadA220() {
   const secAnti = createSection("ANTI-ICE");
   createAirbusPush(secAnti, "ENG ANTI-ICE", (s)=>showPopup("ENG ANTI-ICE "+(s?"ON":"OFF"),"airbus"));
   createAirbusPush(secAnti, "WING ANTI-ICE", (s)=>showPopup("WING ANTI-ICE "+(s?"ON":"OFF"),"airbus"));
+    const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
 }
 
 // ============================================================
@@ -2645,6 +2752,12 @@ function loadE190() {
   createRegionalToggle(secLights, "BEACON", (s)=>showPopup("BEACON "+(s?"ON":"OFF"),"regional"));
   createRegionalToggle(secLights, "NAV", (s)=>showPopup("NAV "+(s?"ON":"OFF"),"regional"));
   createRegionalToggle(secLights, "LANDING", (s)=>showPopup("LANDING "+(s?"ON":"OFF"),"regional"));
+    const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
 }
 
 // ============================================================
@@ -2679,6 +2792,12 @@ function loadCRJ200() {
   createRegionalToggle(secLights, "BEACON", (s)=>showPopup("BEACON "+(s?"ON":"OFF"),"regional"));
   createRegionalToggle(secLights, "NAV", (s)=>showPopup("NAV "+(s?"ON":"OFF"),"regional"));
   createRegionalToggle(secLights, "LANDING", (s)=>showPopup("LANDING "+(s?"ON":"OFF"),"regional"));
+    const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
 }
 //=========================
 // E195-E2
@@ -2721,6 +2840,12 @@ function loadCRJ200() {
   createRegionalToggle(secLights, "STROBE", s=>showPopup("STROBE "+(s?"ON":"OFF"),"ejet"));
   createRegionalToggle(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"ejet"));
   createRegionalToggle(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"ejet"));
+        const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
 }
 
 //=========================
@@ -2763,6 +2888,12 @@ function loadCRJ200() {
   createRegionalToggle(secLights, "STROBE", s=>showPopup("STROBE "+(s?"ON":"OFF"),"ejet"));
   createRegionalToggle(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"ejet"));
   createRegionalToggle(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"ejet"));
+        const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
 }
 
 //=========================
@@ -2774,6 +2905,12 @@ function loadERJ170() {
   createRegionalToggle(secElec, "BATTERY", s=>showPopup("BATTERY "+(s?"ON":"OFF"),"erj"));
   createRegionalToggle(secElec, "GEN 1", s=>showPopup("GEN 1 "+(s?"ON":"OFF"),"erj"));
   createRegionalToggle(secElec, "GEN 2", s=>showPopup("GEN 2 "+(s?"ON":"OFF"),"erj"));
+
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
 
   const secFuel = createSection("FUEL");
   createRegionalToggle(secFuel, "L PUMP", s=>showPopup("L PUMP "+(s?"ON":"OFF"),"erj"));
@@ -2838,6 +2975,12 @@ function loadERJ170() {
       setTimeout(()=>{ showPopup("APU → RUNNING","airbus"); playChime(); },2000);
     } else showPopup("APU → SHUTDOWN","airbus");
   });
+
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
 
   const secIce = createSection("ANTI-ICE");
   createAirbusPush(secIce, "ENG 1 ANTI-ICE", s=>showPopup("ENG 1 ANTI-ICE "+(s?"ON":"OFF"),"airbus"));
