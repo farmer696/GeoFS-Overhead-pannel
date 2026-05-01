@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Airbus/boeing style Toggle Panel
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  GeoFS Overhead Panel Addon adds realistic, interactive overheads for multiple aircraft, including Airbus, Boeing, MD‑11, and the L‑1011 TriStar. Features authentic switch types, system groups, pop‑ups, and aircraft‑specific layouts for a more immersive cockpit experience.
 // @author       Twinkie Aviation/Copilot
 // @match        https://www.geo-fs.com/geofs.php?v=3.9
@@ -670,6 +670,25 @@ function loadMD11() {
   createRocker(secFuel, "R AFT PUMP", s=>showPopup("R AFT PUMP "+(s?"ON":"OFF"),"md11"));
   createBoeingPush(secFuel, "X-FEED", s=>showPopup("CROSSFEED "+(s?"OPEN":"CLOSED"),"md11"));
 
+     // APU
+    const secAPU = createSection("APU");
+
+    createAirbusPush(secAPU, "APU MASTER", (s) => {
+      showPopup("APU MASTER " + (s ? "ON" : "OFF"), "airbus");
+    });
+
+    createAirbusPush(secAPU, "APU START", (s) => {
+      if (s) {
+        showPopup("APU STARTING…", "airbus");
+        setTimeout(() => {
+          showPopup("APU → RUNNING", "airbus");
+          playChime();
+        }, 2000);
+      } else {
+        showPopup("APU → SHUTDOWN", "airbus");
+      }
+    });
+
   // HYDRAULICS
   const secHyd = createSection("HYDRAULICS");
   createRocker(secHyd, "HYD SYS 1", s=>showPopup("HYD SYS 1 "+(s?"ON":"OFF"),"md11"));
@@ -746,6 +765,25 @@ function loadMD11() {
   createRocker(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"l1011"));
   createRocker(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"l1011"));
   createRocker(secLights, "TAXI", s=>showPopup("TAXI "+(s?"ON":"OFF"),"l1011"));
+
+        // APU
+    const secAPU = createSection("APU");
+
+    createAirbusPush(secAPU, "APU MASTER", (s) => {
+      showPopup("APU MASTER " + (s ? "ON" : "OFF"), "airbus");
+    });
+
+    createAirbusPush(secAPU, "APU START", (s) => {
+      if (s) {
+        showPopup("APU STARTING…", "airbus");
+        setTimeout(() => {
+          showPopup("APU → RUNNING", "airbus");
+          playChime();
+        }, 2000);
+      } else {
+        showPopup("APU → SHUTDOWN", "airbus");
+      }
+    });
 
 }
 
@@ -1194,6 +1232,24 @@ function loadMD11() {
 
     createAirbusPush(secBleed, "PACK 4", (s) => {
       showPopup("PACK 4 " + (s ? "ON" : "OFF"), "airbus");
+    });
+       // APU
+    const secAPU = createSection("APU");
+
+    createAirbusPush(secAPU, "APU MASTER", (s) => {
+      showPopup("APU MASTER " + (s ? "ON" : "OFF"), "airbus");
+    });
+
+    createAirbusPush(secAPU, "APU START", (s) => {
+      if (s) {
+        showPopup("APU STARTING…", "airbus");
+        setTimeout(() => {
+          showPopup("APU → RUNNING", "airbus");
+          playChime();
+        }, 2000);
+      } else {
+        showPopup("APU → SHUTDOWN", "airbus");
+      }
     });
 
     // ANTI-ICE
