@@ -1233,7 +1233,7 @@ function loadMD11() {
     createAirbusPush(secBleed, "PACK 4", (s) => {
       showPopup("PACK 4 " + (s ? "ON" : "OFF"), "airbus");
     });
-       // APU
+// APU
     const secAPU = createSection("APU");
 
     createAirbusPush(secAPU, "APU MASTER", (s) => {
