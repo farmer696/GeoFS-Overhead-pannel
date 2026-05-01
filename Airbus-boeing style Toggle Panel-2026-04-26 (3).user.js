@@ -79,6 +79,7 @@
 
   const themes = {
   "Airbus A320": "#003366",
+  "Airbus A300": "#003366",
   "Airbus A330": "#003366",
   "Airbus A340": "#003366",
   "Airbus A350": "#003366",
@@ -94,6 +95,9 @@
   "Airbus A380": "#003366",
   "Airbus A220": "#003366",
   "Embraer E190": "#1f1f1f",
+  "Embraer ERJ170": "#1f1f1f",
+  "Embraer E175": "#1f1f1f",
+  "Embraer E195-E2": "#1f1f1f",
   "Bombardier CRJ-200": "#1f1f1f",
   "MD-11": "#343A40",
   "L1011TriStar": "#303438",
@@ -183,6 +187,7 @@ selectorOverlay.innerHTML = `
 const categories = {
   "Airbus": [
     "Airbus A220",
+    "Airbus A300",
     "Airbus A320",
     "Airbus A330",
     "Airbus A340",
@@ -207,10 +212,15 @@ const categories = {
     "MD-11"
   ],
 
-  "Regional Jets": [
+  "Embraer": [
+    "Embraer ERJ170",
+    "Embraer E175",
+    "Embraer E195-E2",
+    "Embraer E190"
+  ],
+"Regional Jets": [
     "CRJ-200",
     "CRJ-700",
-    "E190"
   ],
 
   "Turboprops": [
@@ -645,6 +655,10 @@ function loadOverhead() {
   if (currentAircraft === "MD-11") return loadMD11();
   if (currentAircraft === "L-1011 TriStar") return loadL1011TriStar();
   if (currentAircraft === "ATR-42") return loadATR42();
+  if (currentAircraft === "Airbus A300") return loadA300();
+  if (currentAircraft === "Embraer E195-E2") return loadE195E2();
+  if (currentAircraft === "Embraer E175") return loadE175();
+  if (currentAircraft === "Embraer ERJ170") return loadERJ170();
 }
 
 
@@ -2589,6 +2603,176 @@ function loadCRJ200() {
   createRegionalToggle(secLights, "BEACON", (s)=>showPopup("BEACON "+(s?"ON":"OFF"),"regional"));
   createRegionalToggle(secLights, "NAV", (s)=>showPopup("NAV "+(s?"ON":"OFF"),"regional"));
   createRegionalToggle(secLights, "LANDING", (s)=>showPopup("LANDING "+(s?"ON":"OFF"),"regional"));
+}
+//=========================
+// E195-E2
+//=========================
+    function loadE195E2() {
+
+  const secElec = createSection("ELECTRICAL");
+  createRegionalToggle(secElec, "BATTERY", s=>showPopup("BATTERY "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secElec, "GEN 1", s=>showPopup("GEN 1 "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secElec, "GEN 2", s=>showPopup("GEN 2 "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secElec, "APU GEN", s=>showPopup("APU GEN "+(s?"ON":"OFF"),"ejet"));
+
+  const secFuel = createSection("FUEL");
+  createRegionalToggle(secFuel, "L PUMP", s=>showPopup("L PUMP "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secFuel, "R PUMP", s=>showPopup("R PUMP "+(s?"ON":"OFF"),"ejet"));
+  createBoeingPush(secFuel, "X-FEED", s=>showPopup("CROSSFEED "+(s?"OPEN":"CLOSED"),"ejet"));
+
+  const secBleed = createSection("BLEED / PACKS");
+  createRegionalToggle(secBleed, "PACK L", s=>showPopup("PACK L "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secBleed, "PACK R", s=>showPopup("PACK R "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secBleed, "ENG 1 BLEED", s=>showPopup("ENG 1 BLEED "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secBleed, "ENG 2 BLEED", s=>showPopup("ENG 2 BLEED "+(s?"ON":"OFF"),"ejet"));
+
+  const secAPU = createSection("APU");
+  createRegionalToggle(secAPU, "APU MASTER", s=>showPopup("APU MASTER "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secAPU, "APU START", s=>{
+    if(s){
+      showPopup("APU STARTING…","ejet");
+      setTimeout(()=>{ showPopup("APU → RUNNING","ejet"); playChime(); },2000);
+    } else showPopup("APU → SHUTDOWN","ejet");
+  });
+
+  const secIce = createSection("ANTI-ICE");
+  createRegionalToggle(secIce, "ENG 1 ANTI-ICE", s=>showPopup("ENG 1 ANTI-ICE "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secIce, "ENG 2 ANTI-ICE", s=>showPopup("ENG 2 ANTI-ICE "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secIce, "WING ANTI-ICE", s=>showPopup("WING ANTI-ICE "+(s?"ON":"OFF"),"ejet"));
+
+  const secLights = createSection("LIGHTS");
+  createRegionalToggle(secLights, "BEACON", s=>showPopup("BEACON "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secLights, "STROBE", s=>showPopup("STROBE "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"ejet"));
+}
+
+//=========================
+// E175
+//=========================
+    function loadE175() {
+
+  const secElec = createSection("ELECTRICAL");
+  createRegionalToggle(secElec, "BATTERY", s=>showPopup("BATTERY "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secElec, "GEN 1", s=>showPopup("GEN 1 "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secElec, "GEN 2", s=>showPopup("GEN 2 "+(s?"ON":"OFF"),"ejet"));
+
+  const secFuel = createSection("FUEL");
+  createRegionalToggle(secFuel, "L PUMP", s=>showPopup("L PUMP "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secFuel, "R PUMP", s=>showPopup("R PUMP "+(s?"ON":"OFF"),"ejet"));
+  createBoeingPush(secFuel, "X-FEED", s=>showPopup("CROSSFEED "+(s?"OPEN":"CLOSED"),"ejet"));
+
+  const secBleed = createSection("BLEED / PACKS");
+  createRegionalToggle(secBleed, "PACK L", s=>showPopup("PACK L "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secBleed, "PACK R", s=>showPopup("PACK R "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secBleed, "ENG 1 BLEED", s=>showPopup("ENG 1 BLEED "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secBleed, "ENG 2 BLEED", s=>showPopup("ENG 2 BLEED "+(s?"ON":"OFF"),"ejet"));
+
+  const secAPU = createSection("APU");
+  createRegionalToggle(secAPU, "APU MASTER", s=>showPopup("APU MASTER "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secAPU, "APU START", s=>{
+    if(s){
+      showPopup("APU STARTING…","ejet");
+      setTimeout(()=>{ showPopup("APU → RUNNING","ejet"); playChime(); },2000);
+    } else showPopup("APU → SHUTDOWN","ejet");
+  });
+
+  const secIce = createSection("ANTI-ICE");
+  createRegionalToggle(secIce, "ENG 1 ANTI-ICE", s=>showPopup("ENG 1 ANTI-ICE "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secIce, "ENG 2 ANTI-ICE", s=>showPopup("ENG 2 ANTI-ICE "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secIce, "WING ANTI-ICE", s=>showPopup("WING ANTI-ICE "+(s?"ON":"OFF"),"ejet"));
+
+  const secLights = createSection("LIGHTS");
+  createRegionalToggle(secLights, "BEACON", s=>showPopup("BEACON "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secLights, "STROBE", s=>showPopup("STROBE "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"ejet"));
+  createRegionalToggle(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"ejet"));
+}
+
+//=========================
+// ERJ170
+//=========================
+function loadERJ170() {
+
+  const secElec = createSection("ELECTRICAL");
+  createRegionalToggle(secElec, "BATTERY", s=>showPopup("BATTERY "+(s?"ON":"OFF"),"erj"));
+  createRegionalToggle(secElec, "GEN 1", s=>showPopup("GEN 1 "+(s?"ON":"OFF"),"erj"));
+  createRegionalToggle(secElec, "GEN 2", s=>showPopup("GEN 2 "+(s?"ON":"OFF"),"erj"));
+
+  const secFuel = createSection("FUEL");
+  createRegionalToggle(secFuel, "L PUMP", s=>showPopup("L PUMP "+(s?"ON":"OFF"),"erj"));
+  createRegionalToggle(secFuel, "R PUMP", s=>showPopup("R PUMP "+(s?"ON":"OFF"),"erj"));
+  createBoeingPush(secFuel, "X-FEED", s=>showPopup("CROSSFEED "+(s?"OPEN":"CLOSED"),"erj"));
+
+  const secBleed = createSection("BLEED / PACKS");
+  createRegionalToggle(secBleed, "PACK L", s=>showPopup("PACK L "+(s?"ON":"OFF"),"erj"));
+  createRegionalToggle(secBleed, "PACK R", s=>showPopup("PACK R "+(s?"ON":"OFF"),"erj"));
+  createRegionalToggle(secBleed, "ENG 1 BLEED", s=>showPopup("ENG 1 BLEED "+(s?"ON":"OFF"),"erj"));
+  createRegionalToggle(secBleed, "ENG 2 BLEED", s=>showPopup("ENG 2 BLEED "+(s?"ON":"OFF"),"erj"));
+
+  const secAPU = createSection("APU");
+  createRegionalToggle(secAPU, "APU MASTER", s=>showPopup("APU MASTER "+(s?"ON":"OFF"),"erj"));
+  createRegionalToggle(secAPU, "APU START", s=>{
+    if(s){
+      showPopup("APU STARTING…","erj");
+      setTimeout(()=>{ showPopup("APU → RUNNING","erj"); playChime(); },2000);
+    } else showPopup("APU → SHUTDOWN","erj");
+  });
+
+  const secIce = createSection("ANTI-ICE");
+  createRegionalToggle(secIce, "ENG 1 ANTI-ICE", s=>showPopup("ENG 1 ANTI-ICE "+(s?"ON":"OFF"),"erj"));
+  createRegionalToggle(secIce, "ENG 2 ANTI-ICE", s=>showPopup("ENG 2 ANTI-ICE "+(s?"ON":"OFF"),"erj"));
+  createRegionalToggle(secIce, "WING ANTI-ICE", s=>showPopup("WING ANTI-ICE "+(s?"ON":"OFF"),"erj"));
+
+  const secLights = createSection("LIGHTS");
+  createRegionalToggle(secLights, "BEACON", s=>showPopup("BEACON "+(s?"ON":"OFF"),"erj"));
+  createRegionalToggle(secLights, "STROBE", s=>showPopup("STROBE "+(s?"ON":"OFF"),"erj"));
+  createRegionalToggle(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"erj"));
+  createRegionalToggle(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"erj"));
+}
+
+//=========================
+// A300
+//=========================
+    function loadA300() {
+
+  const secElec = createSection("ELECTRICAL");
+  createAirbusPush(secElec, "BATTERY", s=>showPopup("BATTERY "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secElec, "GEN 1", s=>showPopup("GEN 1 "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secElec, "GEN 2", s=>showPopup("GEN 2 "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secElec, "APU GEN", s=>showPopup("APU GEN "+(s?"ON":"OFF"),"airbus"));
+
+  const secFuel = createSection("FUEL");
+  createAirbusPush(secFuel, "L PUMP", s=>showPopup("L PUMP "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secFuel, "CTR PUMP", s=>showPopup("CTR PUMP "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secFuel, "R PUMP", s=>showPopup("R PUMP "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secFuel, "X-FEED", s=>showPopup("CROSSFEED "+(s?"OPEN":"CLOSED"),"airbus"));
+
+  const secBleed = createSection("BLEED / PACKS");
+  createAirbusPush(secBleed, "PACK L", s=>showPopup("PACK L "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secBleed, "PACK R", s=>showPopup("PACK R "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secBleed, "ENG 1 BLEED", s=>showPopup("ENG 1 BLEED "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secBleed, "ENG 2 BLEED", s=>showPopup("ENG 2 BLEED "+(s?"ON":"OFF"),"airbus"));
+
+  const secAPU = createSection("APU");
+  createAirbusPush(secAPU, "APU MASTER", s=>showPopup("APU MASTER "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secAPU, "APU START", s=>{
+    if(s){
+      showPopup("APU STARTING…","airbus");
+      setTimeout(()=>{ showPopup("APU → RUNNING","airbus"); playChime(); },2000);
+    } else showPopup("APU → SHUTDOWN","airbus");
+  });
+
+  const secIce = createSection("ANTI-ICE");
+  createAirbusPush(secIce, "ENG 1 ANTI-ICE", s=>showPopup("ENG 1 ANTI-ICE "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secIce, "ENG 2 ANTI-ICE", s=>showPopup("ENG 2 ANTI-ICE "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secIce, "WING ANTI-ICE", s=>showPopup("WING ANTI-ICE "+(s?"ON":"OFF"),"airbus"));
+
+  const secLights = createSection("LIGHTS");
+  createAirbusPush(secLights, "BEACON", s=>showPopup("BEACON "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secLights, "STROBE", s=>showPopup("STROBE "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"airbus"));
+  createAirbusPush(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"airbus"));
 }
 
 
