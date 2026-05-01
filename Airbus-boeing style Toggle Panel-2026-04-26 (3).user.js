@@ -100,6 +100,7 @@
   "Embraer E195-E2": "#1f1f1f",
   "Bombardier CRJ-200": "#1f1f1f",
   "MD-11": "#343A40",
+  "DC-3": "#343A40",
   "L1011TriStar": "#303438",
   "ATR-42": "#1f4b2f"
 };
@@ -209,7 +210,8 @@ const categories = {
   ],
 
   "McDonnell Douglas": [
-    "MD-11"
+    "MD-11",
+    "DC-3"
   ],
 
   "Embraer": [
@@ -221,6 +223,10 @@ const categories = {
 "Regional Jets": [
     "CRJ-200",
     "CRJ-700",
+  ],
+
+"BAC": [
+    "Concorde"
   ],
 
   "Turboprops": [
@@ -521,6 +527,66 @@ selectorOverlay.onclick = (e) => {
     section.appendChild(row);
   }
 
+//=========
+//Temp knob
+//=========
+function createTempModeKnob(section, label, callback) {
+  const row = document.createElement("div");
+  row.style.display = "flex";
+  row.style.justifyContent = "space-between";
+  row.style.alignItems = "center";
+  row.style.margin = "6px 0";
+
+  const text = document.createElement("span");
+  text.innerText = label;
+
+  const knob = document.createElement("div");
+  knob.style.width = "40px";
+  knob.style.height = "40px";
+  knob.style.borderRadius = "50%";
+  knob.style.background = "#222";
+  knob.style.border = "2px solid #555";
+  knob.style.position = "relative";
+  knob.style.cursor = "pointer";
+  knob.style.transition = "transform 0.2s ease";
+
+  // pointer
+  const pointer = document.createElement("div");
+  pointer.style.width = "6px";
+  pointer.style.height = "14px";
+  pointer.style.background = "white";
+  pointer.style.position = "absolute";
+  pointer.style.top = "3px";
+  pointer.style.left = "50%";
+  pointer.style.transform = "translateX(-50%)";
+  pointer.style.borderRadius = "2px";
+
+  knob.appendChild(pointer);
+
+  // 3 positions: 0° = COLD, 90° = WARM, 180° = HOT
+  const modes = ["COLD", "WARM", "HOT"];
+  const angles = [300, 0, 60];
+  let index = 0;
+
+  knob.onclick = () => {
+    playClick();
+
+    index++;
+    if (index > 2) index = 0;
+
+    knob.style.transform = `rotate(${angles[index]}deg)`;
+
+    const mode = modes[index];
+    showPopup("CABIN TEMP → " + mode, "airbus");
+
+    callback(mode);
+  };
+
+  row.appendChild(text);
+  row.appendChild(knob);
+  section.appendChild(row);
+}
+
   // ------------------------------
   // Guarded Switch (Boeing)
   // ------------------------------
@@ -659,6 +725,8 @@ function loadOverhead() {
   if (currentAircraft === "Embraer E195-E2") return loadE195E2();
   if (currentAircraft === "Embraer E175") return loadE175();
   if (currentAircraft === "Embraer ERJ170") return loadERJ170();
+  if (currentAircraft === "DC-3") return loadDC3();
+  if (currentAircraft === "Concorde") return loadConcorde();
 }
 
 
@@ -1780,6 +1848,14 @@ function loadA340() {
       showPopup("WING ANTI-ICE " + (s ? "ON" : "OFF"), "boeing");
     });
 
+const secCabin = createSection("CABIN TEMP");
+
+createTempModeKnob(secCabin, "TEMP MODE", (mode) => {
+  console.log("Cabin temp mode:", mode);
+});
+
+
+
     // LIGHTS
     const secLights = createSection("LIGHTS");
 
@@ -2775,6 +2851,149 @@ function loadERJ170() {
   createAirbusPush(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"airbus"));
 }
 
+//=========================
+// DC-3
+//=========================
+function loadDC3() {
+
+  // ELECTRICAL
+  const secElec = createSection("ELECTRICAL");
+  createRocker(secElec, "BATTERY", s=>showPopup("BATTERY "+(s?"ON":"OFF"),"dc3"));
+  createRocker(secElec, "GEN 1", s=>showPopup("GEN 1 "+(s?"ON":"OFF"),"dc3"));
+  createRocker(secElec, "GEN 2", s=>showPopup("GEN 2 "+(s?"ON":"OFF"),"dc3"));
+
+  // FUEL
+  const secFuel = createSection("FUEL");
+  createRocker(secFuel, "L BOOST PUMP", s=>showPopup("L BOOST PUMP "+(s?"ON":"OFF"),"dc3"));
+  createRocker(secFuel, "R BOOST PUMP", s=>showPopup("R BOOST PUMP "+(s?"ON":"OFF"),"dc3"));
+  createBoeingPush(secFuel, "CROSSFEED", s=>showPopup("CROSSFEED "+(s?"OPEN":"CLOSED"),"dc3"));
+
+  // ANTI-ICE
+  const secIce = createSection("ANTI-ICE");
+  createRocker(secIce, "PITOT HEAT", s=>showPopup("PITOT HEAT "+(s?"ON":"OFF"),"dc3"));
+  createRocker(secIce, "CARB HEAT", s=>showPopup("CARB HEAT "+(s?"ON":"OFF"),"dc3"));
+
+  // LIGHTS
+  const secLights = createSection("LIGHTS");
+  createRocker(secLights, "BEACON", s=>showPopup("BEACON "+(s?"ON":"OFF"),"dc3"));
+  createRocker(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"dc3"));
+  createRocker(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"dc3"));
+}
+  // ============================
+  // Concorde
+  // ============================
+function loadConcorde() {
+
+  // ============================
+  // ELECTRICAL
+  // ============================
+  const secElec = createSection("ELECTRICAL");
+
+  createBoeingPush(secElec, "BATTERY", s=>showPopup("BATTERY "+(s?"ON":"OFF"),"concorde"));
+  createBoeingPush(secElec, "GEN 1", s=>showPopup("GEN 1 "+(s?"ON":"OFF"),"concorde"));
+  createBoeingPush(secElec, "GEN 2", s=>showPopup("GEN 2 "+(s?"ON":"OFF"),"concorde"));
+  createBoeingPush(secElec, "GEN 3", s=>showPopup("GEN 3 "+(s?"ON":"OFF"),"concorde"));
+  createBoeingPush(secElec, "GEN 4", s=>showPopup("GEN 4 "+(s?"ON":"OFF"),"concorde"));
+
+  createRocker(secElec, "AC BUS 1", s=>showPopup("AC BUS 1 "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secElec, "AC BUS 2", s=>showPopup("AC BUS 2 "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secElec, "DC BUS 1", s=>showPopup("DC BUS 1 "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secElec, "DC BUS 2", s=>showPopup("DC BUS 2 "+(s?"ON":"OFF"),"concorde"));
+
+
+  // ============================
+  // FUEL SYSTEM (Concorde is famous for this)
+  // ============================
+  const secFuel = createSection("FUEL SYSTEM");
+
+  createRocker(secFuel, "FEED TANK 1", s=>showPopup("FEED TANK 1 "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secFuel, "FEED TANK 2", s=>showPopup("FEED TANK 2 "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secFuel, "FEED TANK 3", s=>showPopup("FEED TANK 3 "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secFuel, "FEED TANK 4", s=>showPopup("FEED TANK 4 "+(s?"ON":"OFF"),"concorde"));
+
+  createBoeingPush(secFuel, "TRANSFER FWD", s=>showPopup("TRANSFER FWD "+(s?"ON":"OFF"),"concorde"));
+  createBoeingPush(secFuel, "TRANSFER AFT", s=>showPopup("TRANSFER AFT "+(s?"ON":"OFF"),"concorde"));
+  createBoeingPush(secFuel, "TRIM TANK", s=>showPopup("TRIM TANK "+(s?"ACTIVE":"OFF"),"concorde"));
+
+  createRocker(secFuel, "CROSSFEED 1-2", s=>showPopup("CROSSFEED 1-2 "+(s?"OPEN":"CLOSED"),"concorde"));
+  createRocker(secFuel, "CROSSFEED 3-4", s=>showPopup("CROSSFEED 3-4 "+(s?"OPEN":"CLOSED"),"concorde"));
+
+
+  // ============================
+  // BLEED / PACKS
+  // ============================
+  const secBleed = createSection("BLEED / PACKS");
+
+  createRocker(secBleed, "PACK 1", s=>showPopup("PACK 1 "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secBleed, "PACK 2", s=>showPopup("PACK 2 "+(s?"ON":"OFF"),"concorde"));
+
+  createRocker(secBleed, "ENG 1 BLEED", s=>showPopup("ENG 1 BLEED "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secBleed, "ENG 2 BLEED", s=>showPopup("ENG 2 BLEED "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secBleed, "ENG 3 BLEED", s=>showPopup("ENG 3 BLEED "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secBleed, "ENG 4 BLEED", s=>showPopup("ENG 4 BLEED "+(s?"ON":"OFF"),"concorde"));
+
+
+  // ============================
+  // PRESSURIZATION
+  // ============================
+  const secPress = createSection("PRESSURIZATION");
+
+  createRocker(secPress, "CABIN AUTO", s=>showPopup("CABIN MODE "+(s?"AUTO":"MANUAL"),"concorde"));
+  createRocker(secPress, "OUTFLOW VALVE", s=>showPopup("OUTFLOW VALVE "+(s?"OPEN":"CLOSED"),"concorde"));
+  createRocker(secPress, "DUMP", s=>showPopup("CABIN DUMP "+(s?"ACTIVE":"OFF"),"concorde"));
+
+
+  // ============================
+  // HYDRAULICS
+  // ============================
+  const secHyd = createSection("HYDRAULICS");
+
+  createRocker(secHyd, "HYD A", s=>showPopup("HYD A "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secHyd, "HYD B", s=>showPopup("HYD B "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secHyd, "HYD C", s=>showPopup("HYD C "+(s?"ON":"OFF"),"concorde"));
+
+
+  // ============================
+  // ENGINE CONTROL
+  // ============================
+  const secEng = createSection("ENGINE CONTROL");
+
+  createBoeingPush(secEng, "IGNITION", s=>showPopup("IGNITION "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secEng, "REHEAT (AFTERBURNER)", s=>showPopup("REHEAT "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secEng, "INTAKE RAMP", s=>showPopup("INTAKE RAMP "+(s?"AUTO":"MANUAL"),"concorde"));
+
+
+  // ============================
+  // POWER (Concorde has no APU)
+  // ============================
+  const secAPU = createSection("GROUND POWER");
+
+  createBoeingPush(secAPU, "EXT PWR", s=>showPopup("EXTERNAL POWER "+(s?"ON":"OFF"),"concorde"));
+  createBoeingPush(secAPU, "AIR START", s=>showPopup("AIR START "+(s?"ON":"OFF"),"concorde"));
+
+
+  // ============================
+  // ANTI-ICE
+  // ============================
+  const secIce = createSection("ANTI-ICE");
+
+  createRocker(secIce, "ENG ANTI-ICE", s=>showPopup("ENG ANTI-ICE "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secIce, "WING ANTI-ICE", s=>showPopup("WING ANTI-ICE "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secIce, "PITOT HEAT", s=>showPopup("PITOT HEAT "+(s?"ON":"OFF"),"concorde"));
+
+
+  // ============================
+  // LIGHTS
+  // ============================
+  const secLights = createSection("LIGHTS");
+
+  createRocker(secLights, "BEACON", s=>showPopup("BEACON "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secLights, "STROBE", s=>showPopup("STROBE "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secLights, "NAV", s=>showPopup("NAV "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secLights, "LANDING", s=>showPopup("LANDING "+(s?"ON":"OFF"),"concorde"));
+  createRocker(secLights, "TAXI", s=>showPopup("TAXI "+(s?"ON":"OFF"),"concorde"));
+
+}
 
   // ============================================================
   //  INITIAL LOAD
