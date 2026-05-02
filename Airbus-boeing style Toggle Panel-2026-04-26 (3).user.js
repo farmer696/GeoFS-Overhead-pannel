@@ -206,9 +206,6 @@ const categories = {
     "Boeing 787"
   ],
 
-  "Lockheed": [
-    "L-1011 TriStar"
-  ],
 
   "McDonnell Douglas": [
     "MD-11",
@@ -302,6 +299,8 @@ Object.keys(categories).forEach(catName => {
 });
 
 document.body.appendChild(selectorOverlay);
+
+
 
 // OPEN SELECTOR BUTTON
 document.getElementById("aircraft-select-btn").onclick = () => {
