@@ -4,8 +4,8 @@
 // @version      1.2
 // @description  GeoFS Overhead Panel Addon adds realistic, interactive overheads for multiple aircraft, including Airbus, Boeing, MD‑11, and the L‑1011 TriStar. Features authentic switch types, system groups, pop‑ups, and aircraft‑specific layouts for a more immersive cockpit experience.
 // @author       Twinkie Aviation/Copilot
-// @match        https://www.geo-fs.com/geofs.php?v=3.9
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=geo-fs.com
+// @match        http://*/geofs.php*
+// @match        https://*/geofs.php*
 // @grant        none
 // ==/UserScript==
 // ======================================================================
